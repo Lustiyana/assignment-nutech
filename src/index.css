@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    text-transform: none;
+  }
+}
+
+.main-container {
+  @apply px-28 mt-8 flex flex-col gap-8;
+}
+
+.input-wrapper {
+  @apply flex flex-col gap-4 mb-8;
+}
