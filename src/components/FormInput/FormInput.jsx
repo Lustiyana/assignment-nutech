@@ -1,7 +1,17 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 
-const FormInput = ({ label, type, placeholder, icon, value, readOnly }) => {
+const FormInput = ({
+  label,
+  type,
+  placeholder,
+  icon,
+  value,
+  readOnly,
+  onChange,
+  errorMessage,
+}) => {
+  console.log(errorMessage);
   return (
     <div>
       {label && (
@@ -14,14 +24,25 @@ const FormInput = ({ label, type, placeholder, icon, value, readOnly }) => {
         <input
           type={type}
           placeholder={placeholder}
-          className="input input-bordered w-full rounded-md pl-10"
+          className={`input input-bordered w-full rounded-md pl-10 ${
+            errorMessage && "border-red-primary"
+          }`}
           value={value}
           readOnly={readOnly}
+          onChange={onChange}
         />
+
         <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
           <Icon icon={icon} color="grey" />
         </div>
       </div>
+      {errorMessage && (
+        <div className="label flex justify-end">
+          <span className="label-text-alt text-red-primary">
+            {errorMessage}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

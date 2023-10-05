@@ -1,0 +1,11 @@
+export const postRegistrationPath = "/registration";
+export const postLoginPath = "/login";
+export const getProfilePath = "/profile";
+export const putProfileUpdatePath = "/profile/update";
+export const putProfileImagePath = "/profile/image";
+export const getBannerPath = "/banner";
+export const getServicesPath = "/services";
+export const getBalancePath = "/balance";
+export const postTopupPath = "/topup";
+export const postTransactionPath = "/transaction";
+export const getTransactionHistoryPath = "/transaction/history";

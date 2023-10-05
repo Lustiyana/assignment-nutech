@@ -1,8 +1,5 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layout/MainLayout/MainLayout";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
@@ -17,7 +14,7 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "",
+        path: "/",
         element: <HomePage />,
       },
       {
@@ -45,11 +42,7 @@ const router = createBrowserRouter([
 ]);
 
 function Root() {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default Root;

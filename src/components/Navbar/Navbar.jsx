@@ -1,8 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoSims from "../Atoms/LogoSims/LogoSims";
 
+const links = [
+  {
+    link: "/top-up",
+    title: "Top Up",
+  },
+  {
+    link: "/transaction",
+    title: "Transaksi",
+  },
+  {
+    link: "/profile",
+    title: "Akun",
+  },
+];
+
 const Navbar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <div className="border-b border-grey-primary ">
       <div className="navbar bg-base-100 px-28">
@@ -11,15 +29,16 @@ const Navbar = () => {
         </Link>
         <div className="flex-none">
           <ul className="flex gap-8 px-1">
-            <li>
-              <Link to="/top-up">Top Up</Link>
-            </li>
-            <li>
-              <Link to="/transaction">Transaction</Link>
-            </li>
-            <li>
-              <Link to="/profile">Akun</Link>
-            </li>
+            {links.map((item, index) => (
+              <li
+                key={index}
+                className={`${
+                  currentPath === item.link ? "text-red-primary" : ""
+                }`}
+              >
+                <Link to={item.link}>{item.title}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

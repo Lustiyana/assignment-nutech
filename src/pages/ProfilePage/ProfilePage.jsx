@@ -5,8 +5,18 @@ import Button from "../../components/Button/Button";
 import { ICON } from "../../constants/icon";
 import "../../index.css";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const handleClickLogout = (e) => {
+    e.preventDefault();
+    console.log(Cookies.get("token"));
+    Cookies.remove("token");
+    window.location.href = "/login";
+  };
+
   return (
     <div className="main-container">
       <ProfileHeader />
@@ -36,7 +46,7 @@ const ProfilePage = () => {
         </div>
         <div className="flex flex-col gap-4">
           <Button text="Edit Profile" outline />
-          <Button text="Logout" />
+          <Button text="Logout" onClick={handleClickLogout} />
         </div>
       </form>
     </div>
