@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ICON } from "../../constants/icon";
 import {
   ClearProfile,
-  // ClearProfile,
   GetProfile,
   HandleChangeProfile,
   PutProfile,
@@ -18,6 +18,8 @@ const FormProfile = () => {
     useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(GetProfile());
   }, []);
@@ -53,7 +55,7 @@ const FormProfile = () => {
   const handleClickLogout = (e) => {
     e.preventDefault();
     Cookies.remove("token");
-    window.location.href = "/login";
+    navigate("/");
   };
 
   const handleClickEdit = (e) => {
