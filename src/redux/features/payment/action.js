@@ -10,7 +10,6 @@ export const PostPayment = (dataParams) => async (dispatch) => {
       },
     });
     const data = await PaymentService(dataParams);
-    console.log(data);
 
     dispatch({
       type: types.POST_PAYMENT_SUCCESS,
