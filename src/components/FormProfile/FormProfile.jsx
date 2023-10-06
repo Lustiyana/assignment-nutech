@@ -1,23 +1,54 @@
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ICON } from "../../constants/icon";
 import {
+  ClearProfile,
+  // ClearProfile,
   GetProfile,
   HandleChangeProfile,
   PutProfile,
 } from "../../redux/features/profile/action";
+import { ShowToast } from "../../redux/features/toast/action";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 
 const FormProfile = () => {
-  const { profile, first_name, last_name, loading } = useSelector(
-    (state) => state.profile
-  );
+  const { profile, first_name, last_name, loading, error, dataUpdate } =
+    useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
   useEffect(() => {
     dispatch(GetProfile());
   }, []);
+
+  useEffect(() => {
+    if (error?.error?.message) {
+      dispatch(
+        ShowToast({
+          isOpen: true,
+          message: error.error.message,
+          isSuccess: false,
+        })
+      );
+      dispatch(GetProfile());
+    }
+    return () => dispatch(ClearProfile());
+  }, [error?.error?.message]);
+
+  useEffect(() => {
+    if (dataUpdate?.message) {
+      dispatch(
+        ShowToast({
+          isOpen: true,
+          message: dataUpdate.message,
+          isSuccess: true,
+        })
+      );
+      dispatch(GetProfile());
+    }
+    return () => dispatch(ClearProfile());
+  }, [dataUpdate?.message]);
 
   const handleClickLogout = (e) => {
     e.preventDefault();
@@ -37,9 +68,8 @@ const FormProfile = () => {
 
   const handleSubmitEdit = (e) => {
     e.preventDefault();
-    dispatch(PutProfile({ first_name, last_name }));
     setIsEdit(false);
-    return <Toast message="Data berhasil diedit" />;
+    dispatch(PutProfile({ first_name, last_name }));
   };
 
   return (

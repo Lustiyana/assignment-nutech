@@ -9,6 +9,7 @@ const initialState = {
   loading: false,
   error: null,
   dataUpload: null,
+  dataUpdate: null,
 };
 
 export default function ProfileReducer(state = initialState, action) {
@@ -42,6 +43,27 @@ export default function ProfileReducer(state = initialState, action) {
         ...state,
         loading: false,
         dataUpload: action.payload,
+      };
+
+    case types.PUT_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        dataUpdate: action.payload,
+      };
+
+    case types.PUT_PROFILE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        dataUpdate: null,
+      };
+    case types.CLEAR_PROFILE:
+      return {
+        ...state,
+        dataUpdate: { ...state.dataUpdate, message: null },
+        error: null,
       };
     default:
       return {

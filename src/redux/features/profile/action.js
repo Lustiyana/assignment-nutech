@@ -52,13 +52,17 @@ export const PutProfile = (dataParams) => async (dispatch) => {
       },
     });
     const data = await EditProfileService(dataParams);
-
     dispatch({
       type: types.PUT_PROFILE_SUCCESS,
-      payload: data.data,
+      payload: data,
     });
   } catch (error) {
-    console.log(error);
+    dispatch({
+      type: types.PUT_PROFILE_FAILED,
+      payload: {
+        error,
+      },
+    });
   }
 };
 
@@ -72,6 +76,21 @@ export const PutImage = (dataParams) => async (dispatch) => {
     dispatch({
       type: types.PUT_IMAGE_SUCCESS,
       payload: data.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: types.PUT_IMAGE_FAILED,
+      payload: {
+        error,
+      },
+    });
+  }
+};
+
+export const ClearProfile = () => (dispatch) => {
+  try {
+    dispatch({
+      type: types.CLEAR_PROFILE,
     });
   } catch (error) {
     console.log(error);

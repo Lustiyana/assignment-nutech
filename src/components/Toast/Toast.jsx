@@ -12,6 +12,8 @@ const Toast = () => {
     dispatch(ShowToast({ isOpen: false, message: "", isSuccess: true }));
   };
 
+  console.log(isSuccess);
+
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => handleClose(), 3000);

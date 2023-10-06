@@ -12,6 +12,7 @@ export default function HistoriesReducer(state = initialState, action) {
       return {
         ...state,
         loading: action.payload.loading,
+        histories: [],
       };
     case types.GET_HISTORIES_SUCCESS:
       return {

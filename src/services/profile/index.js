@@ -13,7 +13,9 @@ export const EditProfileService = (data) => {
     },
   })
     .then((res) => res.data)
-    .catch((err) => err.response.data);
+    .catch((err) => {
+      throw err.response.data;
+    });
 };
 
 export const EditImageService = (data) => {
@@ -27,5 +29,7 @@ export const EditImageService = (data) => {
     },
   })
     .then((res) => res.data)
-    .catch((err) => err.response.data);
+    .catch((err) => {
+      throw err.response.data;
+    });
 };
