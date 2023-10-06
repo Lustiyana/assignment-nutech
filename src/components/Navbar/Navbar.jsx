@@ -24,9 +24,11 @@ const Navbar = () => {
   return (
     <div className="border-b border-grey-primary ">
       <div className="navbar bg-base-100 px-28">
-        <Link to="/" className="flex-1">
-          <LogoSims />
-        </Link>
+        <div className="flex-1">
+          <Link to="/">
+            <LogoSims />
+          </Link>
+        </div>
         <div className="flex-none">
           <ul className="flex gap-8 px-1">
             {links.map((item, index) => (

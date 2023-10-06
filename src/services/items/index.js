@@ -68,10 +68,10 @@ export const BalanceService = () => {
     });
 };
 
-export const HistoriesService = () => {
+export const HistoriesService = (valueOffset, valueLimit) => {
   const cookie = Cookies.get("token");
   return instance({
-    url: getTransactionHistoryPath,
+    url: `${getTransactionHistoryPath}?offset=${valueOffset}&limit=${valueLimit}`,
     method: "GET",
     headers: {
       Authorization: `Bearer ${cookie}`,

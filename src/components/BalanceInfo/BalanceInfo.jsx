@@ -6,13 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetBalance } from "../../redux/features/balance/action";
 import { currencyFormatter } from "../../helper/currencyFormatter";
 
-const SaldoInfo = () => {
+const BalanceInfo = () => {
   const { balance } = useSelector((state) => state.balance);
+  const payment = useSelector((state) => state.payment);
+  const topup = useSelector((state) => state.topup);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(GetBalance());
-  }, []);
+  }, [topup?.data, payment?.data]);
 
   const [isVisible, setIsVisible] = useState(false);
   const handleClickVisible = () => {
@@ -60,4 +62,4 @@ const SaldoInfo = () => {
   );
 };
 
-export default SaldoInfo;
+export default BalanceInfo;

@@ -1,5 +1,5 @@
 import { instance } from "../axios";
-import { getProfilePath, postLoginPath, postRegistrationPath } from "../path";
+import { postLoginPath, postRegistrationPath } from "../path";
 
 export const LoginService = (data) =>
   instance({
@@ -8,7 +8,9 @@ export const LoginService = (data) =>
     data,
   })
     .then((res) => res.data)
-    .catch((err) => err.response.data);
+    .catch((err) => {
+      throw err.response.data;
+    });
 
 export const RegisterService = (data) =>
   instance({
@@ -17,4 +19,6 @@ export const RegisterService = (data) =>
     data,
   })
     .then((res) => res.data)
-    .catch((err) => res.response.data);
+    .catch((err) => {
+      throw err.response.data;
+    });

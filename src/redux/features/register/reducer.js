@@ -12,19 +12,23 @@ export default function RegisterReducer(state = initialState, action) {
       return {
         ...state,
         loading: action.payload.loading,
+        error: null,
       };
     case types.POST_REGISTER_SUCCESS:
       return {
         ...state,
         loading: false,
         user: action.payload,
+        error: null,
       };
     case types.POST_REGISTER_FAILED:
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload,
       };
+    case types.CLEAR_REGISTER:
+      return initialState;
     default:
       return state;
   }

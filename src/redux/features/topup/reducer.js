@@ -16,19 +16,20 @@ export default function TopupReducer(state = initialState, action) {
       return {
         ...state,
         loading: action.payload.loading,
+        error: null,
       };
     case types.POST_TOPUP_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         loading: false,
         data: action.payload,
+        error: null,
       };
     case types.POST_TOPUP_FAILED:
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload,
       };
     default:
       return state;

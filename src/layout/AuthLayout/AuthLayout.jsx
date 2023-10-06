@@ -7,7 +7,7 @@ const AuthLayout = ({ children, title, linkForm }) => {
   return (
     <div>
       <div className="flex h-screen">
-        <div className="px-52 flex-1 flex flex-col justify-center">
+        <div className="px-52 flex-1 flex flex-col justify-center py-4">
           <div className="flex flex-col items-center gap-8 mb-8">
             <LogoSims />
             <h1 className="font-semibold text-2xl text-center">
@@ -17,16 +17,15 @@ const AuthLayout = ({ children, title, linkForm }) => {
             </h1>
           </div>
           {children}
-          <div className="text-center">
+          <div className="text-center mt-8">
             {linkForm.text}
             <Link to={linkForm.link} className="text-red-primary">
               {" "}
               di sini
             </Link>
           </div>
-          {/* <Toast /> */}
         </div>
-        <div className="">
+        <div className="max-sm:hidden">
           <img
             src={Illustrasi}
             alt=""

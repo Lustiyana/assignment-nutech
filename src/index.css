@@ -9,9 +9,11 @@
 }
 
 .main-container {
-  @apply px-28 mt-8 flex flex-col gap-8;
+  @apply px-28 my-8 flex flex-col gap-8;
 }
-
 .input-wrapper {
   @apply flex flex-col gap-4 mb-8;
+}
+.form-container {
+  @apply flex flex-col flex-1 gap-4;
 }

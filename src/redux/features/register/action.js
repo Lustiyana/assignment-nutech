@@ -10,15 +10,20 @@ export const PostRegister = (dataParams) => async (dispatch) => {
       },
     });
     const data = await RegisterService(dataParams);
-
     dispatch({
       type: types.POST_REGISTER_SUCCESS,
-      payload: data.data,
+      payload: data || null,
     });
   } catch (error) {
     dispatch({
       type: types.POST_REGISTER_FAILED,
-      payload: { error },
+      payload: error,
     });
   }
+};
+
+export const ClearRegister = () => (dispatch) => {
+  dispatch({
+    type: types.CLEAR_REGISTER,
+  });
 };

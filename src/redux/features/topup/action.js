@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
 import { TopupService } from "../../../services/transaction";
 
-export const OnChangeTopup = (value) => async (dispatch) => {
+export const OnChangeTopup = (value) => (dispatch) => {
   try {
     dispatch({
       type: types.CHANGE_TOPUP_VALUE,
@@ -24,11 +24,17 @@ export const PostTopup = (dataParams) => async (dispatch) => {
 
     dispatch({
       type: types.POST_TOPUP_SUCCESS,
-      payload: data.data,
+      payload: data,
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const ClearTopup = () => (dispatch) => {
+  try {
     dispatch({
       type: types.CHANGE_TOPUP_VALUE,
-      payload: "",
     });
   } catch (error) {
     console.log(error);

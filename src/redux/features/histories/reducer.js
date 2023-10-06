@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
 
 const initialState = {
-  histories: null,
+  histories: [],
   loading: false,
   error: null,
 };
@@ -17,7 +17,10 @@ export default function HistoriesReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        histories: action.payload.data,
+        histories:
+          state.histories.length === 0
+            ? action.payload.data
+            : [...state.histories, ...action.payload.data],
       };
     case types.GET_HISTORIES_FAILED:
       return {

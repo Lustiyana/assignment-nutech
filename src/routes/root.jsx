@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layout/MainLayout/MainLayout";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
 import TopUp from "../pages/TopUpPage/TopUpPage";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "payment/:id",
+        element: <PaymentPage />,
       },
     ],
   },

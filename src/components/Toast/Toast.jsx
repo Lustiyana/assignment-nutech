@@ -1,53 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
+import { Icon } from "@iconify/react";
+import { useDispatch, useSelector } from "react-redux";
+import { ShowToast } from "../../redux/features/toast/action";
+import { useEffect } from "react";
 
-const Toast = ({ title, message }) => {
-  const [visible, setVisible] = useState(true);
+const Toast = () => {
+  const { message, isOpen, isSuccess } = useSelector((state) => state.toast);
+  const dispatch = useDispatch();
 
-  const handleClose = () => {
-    setVisible(false);
+  const handleClose = (e) => {
+    dispatch(ShowToast({ isOpen: false, message: "", isSuccess: true }));
   };
 
-  return (
-    // <div className="w-full bg-red-primary relative">
-    //   <div
-    //     className={`bg-red-primary text-white rounded shadow-lg absolute w-full ${
-    //       visible ? "" : "hidden"
-    //     }`}
-    //   >
-    //     <div className="flex justify-between items-center">
-    //       <div className="mr-4">
-    //         <p>Ini pesan</p>
-    //       </div>
-    //       <button
-    //         className="text-white hover:text-gray-300"
-    //         onClick={handleClose}
-    //       >
-    //         <svg
-    //           className="w-4 h-4"
-    //           fill="none"
-    //           stroke="currentColor"
-    //           viewBox="0 0 24 24"
-    //           xmlns="http://www.w3.org/2000/svg"
-    //         >
-    //           <path
-    //             strokeLinecap="round"
-    //             strokeLinejoin="round"
-    //             strokeWidth="2"
-    //             d="M6 18L18 6M6 6l12 12"
-    //           ></path>
-    //         </svg>
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="bg-red-primary w-full">
-      <div className="toast toast-center">
-        <div className="alert alert-error">
-          <span>Message sent successfully.</span>
-        </div>
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => handleClose(), 3000);
+    }
+  }, [isOpen]);
+
+  return isOpen ? (
+    <div className="toast toast-start w-1/2">
+      <div
+        className={`alert ${
+          isSuccess ? "alert-success" : "alert-error"
+        } flex justify-between`}
+      >
+        <span>{message}</span>
+        <button onClick={handleClose}>
+          <Icon icon="maki:cross" />
+        </button>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Toast;

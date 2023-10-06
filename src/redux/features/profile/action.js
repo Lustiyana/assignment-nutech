@@ -1,5 +1,20 @@
 import * as types from "../../../constants/types";
 import { ProfileService } from "../../../services/items";
+import {
+  EditImageService,
+  EditProfileService,
+} from "../../../services/profile";
+
+export const HandleChangeProfile = (name, value) => (dispatch) => {
+  try {
+    dispatch({
+      type: types.CHANGE_PROFILE_VALUE,
+      payload: { name, value },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const GetProfile = () => async (dispatch) => {
   try {
@@ -25,5 +40,40 @@ export const GetProfile = () => async (dispatch) => {
         error,
       },
     });
+  }
+};
+
+export const PutProfile = (dataParams) => async (dispatch) => {
+  try {
+    dispatch({
+      type: types.PUT_PROFILE_LOADING,
+      payload: {
+        loading: true,
+      },
+    });
+    const data = await EditProfileService(dataParams);
+
+    dispatch({
+      type: types.PUT_PROFILE_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const PutImage = (dataParams) => async (dispatch) => {
+  try {
+    dispatch({
+      type: types.PUT_IMAGE_LOADING,
+    });
+    const data = await EditImageService(dataParams);
+
+    dispatch({
+      type: types.PUT_IMAGE_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };

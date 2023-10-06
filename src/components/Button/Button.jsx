@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ text, outline, type, onClick, disabled }) => {
+const Button = ({ text, outline, type, onClick, disabled, loading }) => {
   return (
     <button
       type={type}
@@ -12,7 +12,11 @@ const Button = ({ text, outline, type, onClick, disabled }) => {
       onClick={onClick}
       disabled={disabled}
     >
-      {text}
+      {loading ? (
+        <div className="loading loading-spinner"></div>
+      ) : (
+        <p> {text}</p>
+      )}
     </button>
   );
 };

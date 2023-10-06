@@ -1,35 +1,31 @@
-import { postTopupPath, postTransactionPath } from "../path";
 import Cookies from "js-cookie";
 import { instance } from "../axios";
+import { putProfileImagePath, putProfileUpdatePath } from "../path";
 
-export const TopupService = (data) => {
+export const EditProfileService = (data) => {
   const cookie = Cookies.get("token");
   return instance({
-    url: postTopupPath,
-    method: "POST",
+    url: putProfileUpdatePath,
+    method: "PUT",
     data,
     headers: {
       Authorization: `Bearer ${cookie}`,
     },
   })
     .then((res) => res.data)
-    .catch((err) => {
-      throw err.response.data;
-    });
+    .catch((err) => err.response.data);
 };
 
-export const PaymentService = (data) => {
+export const EditImageService = (data) => {
   const cookie = Cookies.get("token");
   return instance({
-    url: postTransactionPath,
-    method: "POST",
+    url: putProfileImagePath,
+    method: "PUT",
     data,
     headers: {
       Authorization: `Bearer ${cookie}`,
     },
   })
     .then((res) => res.data)
-    .catch((err) => {
-      throw err.response.data;
-    });
+    .catch((err) => err.response.data);
 };

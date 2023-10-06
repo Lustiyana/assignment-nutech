@@ -11,7 +11,6 @@ const FormInput = ({
   onChange,
   errorMessage,
 }) => {
-  console.log(errorMessage);
   return (
     <div>
       {label && (

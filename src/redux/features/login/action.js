@@ -1,6 +1,6 @@
+import Cookies from "js-cookie";
 import * as types from "../../../constants/types";
 import { LoginService } from "../../../services/auth";
-import Cookies from "js-cookie";
 
 export const PostLogin = (dataParams) => async (dispatch) => {
   try {
@@ -11,20 +11,21 @@ export const PostLogin = (dataParams) => async (dispatch) => {
       },
     });
     const data = await LoginService(dataParams);
-    console.log(data.data.token);
-    if (data.data?.token) {
-      Cookies.set("token", data.data.token);
-    }
-
+    Cookies.set("token", data?.data?.token);
     dispatch({
       type: types.POST_LOGIN_SUCCESS,
-      payload: data.data,
+      payload: data || null,
     });
   } catch (error) {
-    console.log(error);
-    // dispatch({
-    //   type: types.POST_LOGIN_FAILED,
-    //   payload: { error },
-    // });
+    dispatch({
+      type: types.POST_LOGIN_FAILED,
+      payload: error,
+    });
   }
+};
+
+export const ClearLogin = () => (dispatch) => {
+  dispatch({
+    type: types.CLEAR_LOGIN,
+  });
 };

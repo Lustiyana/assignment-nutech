@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "./PromoSlider.css";
+import "./BannerSlider.css";
 import { useDispatch, useSelector } from "react-redux";
 import { GetBanners } from "../../redux/features/banners/action";
 
-const PromoSlider = ({ data }) => {
+const BannerSlider = () => {
   const { banners } = useSelector((state) => state.banners);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,4 +22,4 @@ const PromoSlider = ({ data }) => {
   );
 };
 
-export default PromoSlider;
+export default BannerSlider;

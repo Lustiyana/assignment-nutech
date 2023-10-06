@@ -14,7 +14,6 @@ export default function BannersReducer(state = initialState, action) {
         loading: action.payload.loading,
       };
     case types.GET_BANNERS_SUCCESS:
-      console.log(action.payload.data);
       return {
         ...state,
         loading: false,
