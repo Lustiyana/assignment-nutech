@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Illustrasi from "../../assets/images/Illustrasi Login.png";
-import LogoSims from "../../components/Atoms/LogoSims/LogoSims";
+import LogoSims from "../../components/atoms/LogoSims/LogoSims";
 
 const AuthLayout = ({ children, title, linkForm }) => {
   return (
