@@ -20,7 +20,13 @@ const FormRegister = () => {
     password: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState({
+    email: "",
+    first_name: "",
+    last_name: "",
+    password: "",
+    confirmPassword: "",
+  });
   const dispatch = useDispatch();
   const { error, loading, user } = useSelector((state) => state.register);
 
@@ -50,12 +56,40 @@ const FormRegister = () => {
     return () => dispatch(clearRegister());
   }, [user?.message]);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setModifiedData({ ...modifiedData, [name]: value });
+    setErrorMessage({ ...errorMessage, [name]: "" });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (modifiedData.password === confirmPassword) {
-      dispatch(postRegister(modifiedData));
+
+    let valid = true;
+    const newFormErrors = { ...errorMessage };
+
+    for (const field in modifiedData) {
+      if (modifiedData[field].trim() === "") {
+        newFormErrors[field] = "harus diisi";
+        valid = false;
+      }
+    }
+
+    if (!valid) {
+      if (confirmPassword === "") {
+        setErrorMessage({
+          ...newFormErrors,
+          confirmPassword: "harus diisi",
+        });
+      } else if (confirmPassword !== modifiedData.password) {
+        setErrorMessage({
+          ...newFormErrors,
+          confirmPassword: "password tidak sama",
+        });
+      }
+      setErrorMessage(...errorMessage, ...newFormErrors);
     } else {
-      setErrorMessage("password tidak sama");
+      dispatch(postRegister(modifiedData));
     }
   };
 
@@ -68,36 +102,36 @@ const FormRegister = () => {
             placeholder="masukkan email anda"
             icon={ICON["email"]}
             value={modifiedData.email}
-            onChange={(e) =>
-              setModifiedData({ ...modifiedData, email: e.target.value })
-            }
+            name="email"
+            onChange={handleInputChange}
+            errorMessage={errorMessage.email}
           />
           <FormInput
             type="text"
             placeholder="nama depan"
             icon={ICON["user"]}
             value={modifiedData.first_name}
-            onChange={(e) =>
-              setModifiedData({ ...modifiedData, first_name: e.target.value })
-            }
+            name="first_name"
+            onChange={handleInputChange}
+            errorMessage={errorMessage.first_name}
           />
           <FormInput
             type="text"
             placeholder="nama belakang"
             icon={ICON["user"]}
             value={modifiedData.last_name}
-            onChange={(e) =>
-              setModifiedData({ ...modifiedData, last_name: e.target.value })
-            }
+            name="last_name"
+            onChange={handleInputChange}
+            errorMessage={errorMessage.last_name}
           />
           <FormInput
             type="password"
             placeholder="buat password"
             icon={ICON["password"]}
             value={modifiedData.password}
-            onChange={(e) =>
-              setModifiedData({ ...modifiedData, password: e.target.value })
-            }
+            name="password"
+            onChange={handleInputChange}
+            errorMessage={errorMessage.password}
           />
           <FormInput
             type="password"
@@ -105,7 +139,7 @@ const FormRegister = () => {
             icon={ICON["password"]}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            errorMessage={errorMessage}
+            errorMessage={errorMessage.confirmPassword}
           />
         </div>
         <Button

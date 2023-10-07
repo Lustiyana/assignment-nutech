@@ -13,6 +13,10 @@ const FormLogin = () => {
     email: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState({
+    email: "",
+    password: "",
+  });
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector((state) => state.login);
 
@@ -47,16 +51,30 @@ const FormLogin = () => {
     }
   }, [user?.data?.token]);
 
-  const handleEmailChange = (e) => {
-    setModifiedData({ ...modifiedData, email: e.target.value });
-  };
-  const handlePasswordChange = (e) => {
-    setModifiedData({ ...modifiedData, password: e.target.value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setModifiedData({ ...modifiedData, [name]: value });
+    setErrorMessage({ ...errorMessage, [name]: "" });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postLogin(modifiedData));
+
+    let valid = true;
+    const newFormErrors = { ...errorMessage };
+
+    for (const field in modifiedData) {
+      if (modifiedData[field].trim() === "") {
+        newFormErrors[field] = "harus diisi";
+        valid = false;
+      }
+    }
+
+    if (!valid) {
+      setErrorMessage(newFormErrors);
+    } else {
+      dispatch(postLogin(modifiedData));
+    }
   };
 
   return (
@@ -68,14 +86,18 @@ const FormLogin = () => {
             placeholder="masukkan email anda"
             icon={ICON["email"]}
             value={modifiedData.email}
-            onChange={handleEmailChange}
+            name="email"
+            onChange={handleInputChange}
+            errorMessage={errorMessage.email}
           />
           <FormInput
             type="password"
             placeholder="masukkan password anda"
             icon={ICON["password"]}
             value={modifiedData.password}
-            onChange={handlePasswordChange}
+            name="password"
+            onChange={handleInputChange}
+            errorMessage={errorMessage.password}
           />
         </div>
         <Button

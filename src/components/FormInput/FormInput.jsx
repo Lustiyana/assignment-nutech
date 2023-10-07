@@ -10,6 +10,7 @@ const FormInput = ({
   readOnly,
   onChange,
   errorMessage,
+  name,
 }) => {
   return (
     <div>
@@ -27,6 +28,7 @@ const FormInput = ({
             errorMessage && "border-red-primary"
           }`}
           value={value}
+          name={name}
           readOnly={readOnly}
           onChange={onChange}
         />
