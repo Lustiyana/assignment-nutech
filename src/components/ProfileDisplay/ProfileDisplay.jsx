@@ -16,7 +16,11 @@ const ProfileDisplay = () => {
       <img src={profileimage} alt={profileimage} className="mb-8" />
       <TextHeader
         text1="Selamat Datang"
-        text2={`${profile?.data?.first_name} ${profile?.data?.last_name}`}
+        text2={`${
+          profile.data
+            ? `${profile?.data?.first_name} ${profile?.data?.last_name}`
+            : ""
+        }`}
       />
     </div>
   );
