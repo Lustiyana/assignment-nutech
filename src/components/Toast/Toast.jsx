@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import { useDispatch, useSelector } from "react-redux";
-import { ShowToast } from "../../redux/features/toast/action";
+import { showToast } from "../../redux/features/toast/action";
 import { useEffect } from "react";
 
 const Toast = () => {
@@ -9,7 +9,7 @@ const Toast = () => {
   const dispatch = useDispatch();
 
   const handleClose = (e) => {
-    dispatch(ShowToast({ isOpen: false, message: "", isSuccess: true }));
+    dispatch(showToast({ isOpen: false, message: "", isSuccess: true }));
   };
 
   useEffect(() => {

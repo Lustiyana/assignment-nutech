@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
-import { ServicesService } from "../../../services/items";
+import { servicesService } from "../../../services/items";
 
-export const GetServices = () => async (dispatch) => {
+export const getServices = () => async (dispatch) => {
   try {
     dispatch({
       type: types.GET_SERVICES_LOADING,
@@ -10,7 +10,7 @@ export const GetServices = () => async (dispatch) => {
       },
     });
 
-    const data = await ServicesService();
+    const data = await servicesService();
 
     dispatch({
       type: types.GET_SERVICES_SUCCESS,

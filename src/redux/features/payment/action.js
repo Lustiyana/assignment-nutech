@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
-import { PaymentService } from "../../../services/transaction";
+import { paymentService } from "../../../services/transaction";
 
-export const PostPayment = (dataParams) => async (dispatch) => {
+export const postPayment = (dataParams) => async (dispatch) => {
   try {
     dispatch({
       type: types.POST_PAYMENT_LOADING,
@@ -9,7 +9,7 @@ export const PostPayment = (dataParams) => async (dispatch) => {
         loading: true,
       },
     });
-    const data = await PaymentService(dataParams);
+    const data = await paymentService(dataParams);
 
     dispatch({
       type: types.POST_PAYMENT_SUCCESS,
@@ -23,7 +23,7 @@ export const PostPayment = (dataParams) => async (dispatch) => {
   }
 };
 
-export const ClearPayment = () => (dispatch) => {
+export const clearPayment = () => (dispatch) => {
   dispatch({
     type: types.CLEAR_PAYMENT,
   });

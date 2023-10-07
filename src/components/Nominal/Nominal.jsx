@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { currencyFormatter } from "../../helper/currencyFormatter";
-import { OnChangeTopup } from "../../redux/features/topup/action";
+import { onChangeTopup } from "../../redux/features/topup/action";
 
 const nominal = [10000, 20000, 50000, 100000, 250000, 500000];
 
 const Nominal = () => {
   const dispatch = useDispatch();
   const handleClick = (value) => {
-    dispatch(OnChangeTopup(value));
+    dispatch(onChangeTopup(value));
   };
   return (
     <div className="grid grid-cols-3 h-full gap-x-2 gap-y-4">

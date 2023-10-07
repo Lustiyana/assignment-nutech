@@ -6,7 +6,7 @@ const initialState = {
   isSuccess: true,
 };
 
-export default function ToastReducer(state = initialState, action) {
+export default function toastReducer(state = initialState, action) {
   switch (action.type) {
     case types.OPEN_TOAST:
       return {

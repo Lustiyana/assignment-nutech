@@ -2,7 +2,7 @@ import { postTopupPath, postTransactionPath } from "../path";
 import Cookies from "js-cookie";
 import { instance } from "../axios";
 
-export const TopupService = (data) => {
+export const topupService = (data) => {
   const cookie = Cookies.get("token");
   return instance({
     url: postTopupPath,
@@ -18,7 +18,7 @@ export const TopupService = (data) => {
     });
 };
 
-export const PaymentService = (data) => {
+export const paymentService = (data) => {
   const cookie = Cookies.get("token");
   return instance({
     url: postTransactionPath,

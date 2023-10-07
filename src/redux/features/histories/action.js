@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
-import { HistoriesService } from "../../../services/items";
+import { historiesService } from "../../../services/items";
 
-export const GetHistories = (valueOffset, valueLimit) => async (dispatch) => {
+export const getHistories = (valueOffset, valueLimit) => async (dispatch) => {
   try {
     dispatch({
       type: types.GET_HISTORIES_LOADING,
@@ -10,7 +10,7 @@ export const GetHistories = (valueOffset, valueLimit) => async (dispatch) => {
       },
     });
 
-    const data = await HistoriesService(valueOffset, valueLimit);
+    const data = await historiesService(valueOffset, valueLimit);
 
     dispatch({
       type: types.GET_HISTORIES_SUCCESS,

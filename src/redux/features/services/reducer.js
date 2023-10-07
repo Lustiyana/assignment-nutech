@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export default function ServicesReducer(state = initialState, action) {
+export default function servicesReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_SERVICES_LOADING:
       return {

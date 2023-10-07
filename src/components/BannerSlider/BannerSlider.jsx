@@ -3,13 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "./BannerSlider.css";
 import { useDispatch, useSelector } from "react-redux";
-import { GetBanners } from "../../redux/features/banners/action";
+import { getBanners } from "../../redux/features/banners/action";
 
 const BannerSlider = () => {
   const { banners } = useSelector((state) => state.banners);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetBanners());
+    dispatch(getBanners());
   }, []);
   return (
     <Swiper slidesPerView={"auto"}>

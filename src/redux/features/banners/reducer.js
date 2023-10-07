@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export default function BannersReducer(state = initialState, action) {
+export default function bannersReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_BANNERS_LOADING:
       return {

@@ -4,11 +4,11 @@ import { ICON } from "../../constants/icon";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 import {
-  ClearRegister,
-  PostRegister,
+  clearRegister,
+  postRegister,
 } from "../../redux/features/register/action";
 import { useEffect } from "react";
-import { ShowToast } from "../../redux/features/toast/action";
+import { showToast } from "../../redux/features/toast/action";
 import { useNavigate } from "react-router-dom";
 
 const FormRegister = () => {
@@ -27,7 +27,7 @@ const FormRegister = () => {
   useEffect(() => {
     if (dataUser?.error?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: dataUser.error.message,
           isSuccess: false,
@@ -39,7 +39,7 @@ const FormRegister = () => {
   useEffect(() => {
     if (dataUser?.user?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: dataUser?.user?.message,
           isSuccess: true,
@@ -47,13 +47,13 @@ const FormRegister = () => {
       );
       navigate("/login");
     }
-    return () => dispatch(ClearRegister());
+    return () => dispatch(clearRegister());
   }, [dataUser?.user?.message]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (modifiedData.password === confirmPassword) {
-      dispatch(PostRegister(modifiedData));
+      dispatch(postRegister(modifiedData));
     } else {
       setErrorMessage("password tidak sama");
     }

@@ -5,8 +5,8 @@ import { ICON } from "../../constants/icon";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 import Toast from "../Toast/Toast";
-import { ClearLogin, PostLogin } from "../../redux/features/login/action";
-import { ShowToast } from "../../redux/features/toast/action";
+import { clearLogin, postLogin } from "../../redux/features/login/action";
+import { showToast } from "../../redux/features/toast/action";
 import Cookies from "js-cookie";
 
 const FormLogin = () => {
@@ -21,7 +21,7 @@ const FormLogin = () => {
   useEffect(() => {
     if (dataUser?.error?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: dataUser.error.message,
           isSuccess: false,
@@ -33,14 +33,14 @@ const FormLogin = () => {
   useEffect(() => {
     if (dataUser?.user?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: dataUser?.user?.message,
           isSuccess: true,
         })
       );
     }
-    return () => dispatch(ClearLogin());
+    return () => dispatch(clearLogin());
   }, [dataUser?.user?.message]);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const FormLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(PostLogin(modifiedData));
+    dispatch(postLogin(modifiedData));
   };
 
   return (

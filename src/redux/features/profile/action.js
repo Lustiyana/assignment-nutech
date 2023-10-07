@@ -1,11 +1,11 @@
 import * as types from "../../../constants/types";
-import { ProfileService } from "../../../services/items";
+import { profileService } from "../../../services/items";
 import {
-  EditImageService,
-  EditProfileService,
+  editImageService,
+  editProfileService,
 } from "../../../services/profile";
 
-export const HandleChangeProfile = (name, value) => (dispatch) => {
+export const handleChangeProfile = (name, value) => (dispatch) => {
   try {
     dispatch({
       type: types.CHANGE_PROFILE_VALUE,
@@ -16,7 +16,7 @@ export const HandleChangeProfile = (name, value) => (dispatch) => {
   }
 };
 
-export const GetProfile = () => async (dispatch) => {
+export const getProfile = () => async (dispatch) => {
   try {
     dispatch({
       type: types.GET_PROFILE_LOADING,
@@ -25,7 +25,7 @@ export const GetProfile = () => async (dispatch) => {
       },
     });
 
-    const data = await ProfileService();
+    const data = await profileService();
 
     dispatch({
       type: types.GET_PROFILE_SUCCESS,
@@ -43,7 +43,7 @@ export const GetProfile = () => async (dispatch) => {
   }
 };
 
-export const PutProfile = (dataParams) => async (dispatch) => {
+export const putProfile = (dataParams) => async (dispatch) => {
   try {
     dispatch({
       type: types.PUT_PROFILE_LOADING,
@@ -51,7 +51,7 @@ export const PutProfile = (dataParams) => async (dispatch) => {
         loading: true,
       },
     });
-    const data = await EditProfileService(dataParams);
+    const data = await editProfileService(dataParams);
     dispatch({
       type: types.PUT_PROFILE_SUCCESS,
       payload: data,
@@ -66,12 +66,12 @@ export const PutProfile = (dataParams) => async (dispatch) => {
   }
 };
 
-export const PutImage = (dataParams) => async (dispatch) => {
+export const putImage = (dataParams) => async (dispatch) => {
   try {
     dispatch({
       type: types.PUT_IMAGE_LOADING,
     });
-    const data = await EditImageService(dataParams);
+    const data = await editImageService(dataParams);
 
     dispatch({
       type: types.PUT_IMAGE_SUCCESS,
@@ -87,7 +87,7 @@ export const PutImage = (dataParams) => async (dispatch) => {
   }
 };
 
-export const ClearProfile = () => (dispatch) => {
+export const clearProfile = () => (dispatch) => {
   try {
     dispatch({
       type: types.CLEAR_PROFILE,

@@ -1,11 +1,11 @@
 import * as types from "../../../constants/types";
 const initialState = {
-  data: null,
+  paymentData: null,
   loading: false,
   error: null,
 };
 
-export default function PaymentReducer(state = initialState, action) {
+export default function paymentReducer(state = initialState, action) {
   switch (action.type) {
     case types.POST_PAYMENT_LOADING:
       return {

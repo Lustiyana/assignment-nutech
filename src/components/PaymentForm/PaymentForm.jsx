@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ICON } from "../../constants/icon";
-import { ClearPayment, PostPayment } from "../../redux/features/payment/action";
-import { GetServices } from "../../redux/features/services/action";
-import { ShowToast } from "../../redux/features/toast/action";
+import { clearPayment, postPayment } from "../../redux/features/payment/action";
+import { getServices } from "../../redux/features/services/action";
+import { showToast } from "../../redux/features/toast/action";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 
@@ -13,38 +13,38 @@ const PaymentForm = ({ id }) => {
   const payment = useSelector((state) => state.payment);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetServices());
+    dispatch(getServices());
   }, []);
 
   useEffect(() => {
     if (payment?.error?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: payment.error.message,
           isSuccess: false,
         })
       );
     }
-    return () => dispatch(ClearPayment());
+    return () => dispatch(clearPayment());
   }, [payment?.error?.message]);
 
   useEffect(() => {
     if (payment?.data?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: payment?.data?.message,
           isSuccess: true,
         })
       );
     }
-    return () => dispatch(ClearPayment());
+    return () => dispatch(clearPayment());
   }, [payment?.data?.message]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(PostPayment({ service_code: services?.data[id].service_code }));
+    dispatch(postPayment({ service_code: services?.data[id].service_code }));
   };
 
   return (

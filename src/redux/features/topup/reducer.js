@@ -1,16 +1,16 @@
 import * as types from "../../../constants/types";
 const initialState = {
-  top_up_amount: "",
-  data: null,
+  amount: "",
+  topupData: null,
   loading: false,
   error: null,
 };
 
-export default function TopupReducer(state = initialState, action) {
+export default function topupReducer(state = initialState, action) {
   switch (action.type) {
     case types.CHANGE_TOPUP_VALUE:
       return {
-        top_up_amount: action.payload,
+        amount: action.payload,
       };
     case types.POST_TOPUP_LOADING:
       return {

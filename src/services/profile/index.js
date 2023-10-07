@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { instance } from "../axios";
 import { putProfileImagePath, putProfileUpdatePath } from "../path";
 
-export const EditProfileService = (data) => {
+export const editProfileService = (data) => {
   const cookie = Cookies.get("token");
   return instance({
     url: putProfileUpdatePath,
@@ -18,7 +18,7 @@ export const EditProfileService = (data) => {
     });
 };
 
-export const EditImageService = (data) => {
+export const editImageService = (data) => {
   const cookie = Cookies.get("token");
   return instance({
     url: putProfileImagePath,

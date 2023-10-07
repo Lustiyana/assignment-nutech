@@ -8,7 +8,7 @@ import {
 } from "../path";
 import Cookies from "js-cookie";
 
-export const ServicesService = () => {
+export const servicesService = () => {
   const cookie = Cookies.get("token");
   return instance({
     url: getServicesPath,
@@ -23,7 +23,7 @@ export const ServicesService = () => {
     });
 };
 
-export const BannersService = () => {
+export const bannersService = () => {
   const cookie = Cookies.get("token");
   return instance({
     url: getBannerPath,
@@ -38,7 +38,7 @@ export const BannersService = () => {
     });
 };
 
-export const ProfileService = () => {
+export const profileService = () => {
   const cookie = Cookies.get("token");
   return instance({
     url: getProfilePath,
@@ -53,7 +53,7 @@ export const ProfileService = () => {
     });
 };
 
-export const BalanceService = () => {
+export const balanceService = () => {
   const cookie = Cookies.get("token");
   return instance({
     url: getBalancePath,
@@ -68,7 +68,7 @@ export const BalanceService = () => {
     });
 };
 
-export const HistoriesService = (valueOffset, valueLimit) => {
+export const historiesService = (valueOffset, valueLimit) => {
   const cookie = Cookies.get("token");
   return instance({
     url: `${getTransactionHistoryPath}?offset=${valueOffset}&limit=${valueLimit}`,

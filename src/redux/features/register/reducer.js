@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export default function RegisterReducer(state = initialState, action) {
+export default function registerReducer(state = initialState, action) {
   switch (action.type) {
     case types.POST_REGISTER_LOADING:
       return {

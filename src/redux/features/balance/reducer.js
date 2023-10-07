@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export default function BalanceReducer(state = initialState, action) {
+export default function balanceReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_BALANCE_LOADING:
       return {

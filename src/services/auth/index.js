@@ -1,7 +1,7 @@
 import { instance } from "../axios";
 import { postLoginPath, postRegistrationPath } from "../path";
 
-export const LoginService = (data) =>
+export const loginService = (data) =>
   instance({
     url: postLoginPath,
     method: "POST",
@@ -12,7 +12,7 @@ export const LoginService = (data) =>
       throw err.response.data;
     });
 
-export const RegisterService = (data) =>
+export const registerService = (data) =>
   instance({
     url: postRegistrationPath,
     method: "POST",

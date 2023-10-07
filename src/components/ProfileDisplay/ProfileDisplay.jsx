@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import profileimage from "../../assets/images/Profile Photo.png";
-import { GetProfile } from "../../redux/features/profile/action";
+import { getProfile } from "../../redux/features/profile/action";
 import TextHeader from "../atoms/TextHeader/TextHeader";
 
 const ProfileDisplay = () => {
   const { profile } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetProfile());
+    dispatch(getProfile());
   }, []);
 
   return (

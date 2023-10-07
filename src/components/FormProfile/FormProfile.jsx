@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ICON } from "../../constants/icon";
 import {
-  ClearProfile,
-  GetProfile,
-  HandleChangeProfile,
-  PutProfile,
+  clearProfile,
+  getProfile,
+  handleChangeProfile,
+  putProfile,
 } from "../../redux/features/profile/action";
-import { ShowToast } from "../../redux/features/toast/action";
+import { showToast } from "../../redux/features/toast/action";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 
@@ -21,35 +21,35 @@ const FormProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(GetProfile());
+    dispatch(getProfile());
   }, []);
 
   useEffect(() => {
     if (error?.error?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: error.error.message,
           isSuccess: false,
         })
       );
-      dispatch(GetProfile());
+      dispatch(getProfile());
     }
-    return () => dispatch(ClearProfile());
+    return () => dispatch(clearProfile());
   }, [error?.error?.message]);
 
   useEffect(() => {
     if (dataUpdate?.message) {
       dispatch(
-        ShowToast({
+        showToast({
           isOpen: true,
           message: dataUpdate.message,
           isSuccess: true,
         })
       );
-      dispatch(GetProfile());
+      dispatch(getProfile());
     }
-    return () => dispatch(ClearProfile());
+    return () => dispatch(clearProfile());
   }, [dataUpdate?.message]);
 
   const handleClickLogout = (e) => {
@@ -71,7 +71,7 @@ const FormProfile = () => {
   const handleSubmitEdit = (e) => {
     e.preventDefault();
     setIsEdit(false);
-    dispatch(PutProfile({ first_name, last_name }));
+    dispatch(putProfile({ first_name, last_name }));
   };
 
   return (
@@ -91,7 +91,7 @@ const FormProfile = () => {
           label="Nama Depan"
           readOnly={!isEdit}
           onChange={(e) =>
-            dispatch(HandleChangeProfile("first_name", e.target.value))
+            dispatch(handleChangeProfile("first_name", e.target.value))
           }
         />
         <FormInput
@@ -101,7 +101,7 @@ const FormProfile = () => {
           label="Nama Belakang"
           readOnly={!isEdit}
           onChange={(e) =>
-            dispatch(HandleChangeProfile("last_name", e.target.value))
+            dispatch(handleChangeProfile("last_name", e.target.value))
           }
         />
       </div>

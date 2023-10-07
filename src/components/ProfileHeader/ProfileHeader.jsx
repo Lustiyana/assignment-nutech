@@ -2,10 +2,10 @@ import React from "react";
 import profileDefault from "../../assets/images/Profile Photo.png";
 import { Icon } from "@iconify/react";
 import { useDispatch, useSelector } from "react-redux";
-import { PutImage } from "../../redux/features/profile/action";
+import { putImage } from "../../redux/features/profile/action";
 import { useState } from "react";
 import { useEffect } from "react";
-import { ShowToast } from "../../redux/features/toast/action";
+import { showToast } from "../../redux/features/toast/action";
 
 const ProfileHeader = () => {
   const { profile, dataUpload } = useSelector((state) => state.profile);
@@ -24,10 +24,10 @@ const ProfileHeader = () => {
       if (fileSizeKB < 100) {
         const formData = new FormData();
         formData.append("file", file);
-        dispatch(PutImage(formData));
+        dispatch(putImage(formData));
       } else {
         dispatch(
-          ShowToast({
+          showToast({
             isOpen: true,
             message: "Ukuran gambar harus kurang dari 100Kb",
             isSuccess: false,

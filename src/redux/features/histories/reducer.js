@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export default function HistoriesReducer(state = initialState, action) {
+export default function historiesReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_HISTORIES_LOADING:
       return {

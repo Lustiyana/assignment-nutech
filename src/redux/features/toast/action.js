@@ -1,6 +1,6 @@
 import * as types from "../../../constants/types";
 
-export const ShowToast = (value) => (dispatch) => {
+export const showToast = (value) => (dispatch) => {
   try {
     dispatch({
       type: types.OPEN_TOAST,

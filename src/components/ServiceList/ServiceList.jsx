@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { GetServices } from "../../redux/features/services/action";
+import { getServices } from "../../redux/features/services/action";
 
 const ServiceList = () => {
   const { services } = useSelector((state) => state.services);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(GetServices());
+    dispatch(getServices());
   }, []);
   return (
     <div className="flex justify-between">

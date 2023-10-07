@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
-import { BalanceService } from "../../../services/items";
+import { balanceService } from "../../../services/items";
 
-export const GetBalance = () => async (dispatch) => {
+export const getBalance = () => async (dispatch) => {
   try {
     dispatch({
       type: types.GET_BALANCE_LOADING,
@@ -10,12 +10,12 @@ export const GetBalance = () => async (dispatch) => {
       },
     });
 
-    const data = await BalanceService();
+    const data = await balanceService();
 
     dispatch({
       type: types.GET_BALANCE_SUCCESS,
       payload: {
-        data: data,
+        data: data.data,
       },
     });
   } catch (error) {

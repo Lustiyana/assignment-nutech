@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-export default function LoginReducer(state = initialState, action) {
+export default function loginReducer(state = initialState, action) {
   switch (action.type) {
     case types.POST_LOGIN_LOADING:
       return {

@@ -12,7 +12,7 @@ const initialState = {
   dataUpdate: null,
 };
 
-export default function ProfileReducer(state = initialState, action) {
+export default function profileReducer(state = initialState, action) {
   switch (action.type) {
     case types.CHANGE_PROFILE_VALUE:
       return {

@@ -1,7 +1,7 @@
 import * as types from "../../../constants/types";
-import { RegisterService } from "../../../services/auth";
+import { registerService } from "../../../services/auth";
 
-export const PostRegister = (dataParams) => async (dispatch) => {
+export const postRegister = (dataParams) => async (dispatch) => {
   try {
     dispatch({
       type: types.POST_REGISTER_LOADING,
@@ -9,7 +9,7 @@ export const PostRegister = (dataParams) => async (dispatch) => {
         loading: true,
       },
     });
-    const data = await RegisterService(dataParams);
+    const data = await registerService(dataParams);
     dispatch({
       type: types.POST_REGISTER_SUCCESS,
       payload: data || null,
@@ -22,7 +22,7 @@ export const PostRegister = (dataParams) => async (dispatch) => {
   }
 };
 
-export const ClearRegister = () => (dispatch) => {
+export const clearRegister = () => (dispatch) => {
   dispatch({
     type: types.CLEAR_REGISTER,
   });

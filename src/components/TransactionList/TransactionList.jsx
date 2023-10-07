@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currencyFormatter } from "../../helper/currencyFormatter";
 import { dateFormatter } from "../../helper/dateFormatter";
-import { GetHistories } from "../../redux/features/histories/action";
+import { getHistories } from "../../redux/features/histories/action";
 
 const TransactionList = () => {
   const { histories } = useSelector((state) => state.histories);
@@ -12,7 +12,7 @@ const TransactionList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetHistories(valueOffset, valueLimit));
+    dispatch(getHistories(valueOffset, valueLimit));
   }, [valueOffset]);
 
   const handleClick = (e) => {

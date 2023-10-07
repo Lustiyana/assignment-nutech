@@ -9,8 +9,8 @@ import Modal from "../Modal/Modal";
 import Nominal from "../Nominal/Nominal";
 import logo from "../../assets/images/Logo.png";
 import {
-  ClearTopup,
-  OnChangeTopup,
+  clearTopup,
+  onChangeTopup,
   PostTopup,
 } from "../../redux/features/topup/action";
 import { useEffect } from "react";
@@ -25,7 +25,7 @@ const FormTopup = () => {
     if (isNaN(e.target.value)) {
       return topup.top_up_amount + "";
     } else {
-      dispatch(OnChangeTopup(e.target.value));
+      dispatch(onChangeTopup(e.target.value));
     }
   };
 
@@ -59,7 +59,7 @@ const FormTopup = () => {
   }, [topup?.error?.message]);
 
   useEffect(() => {
-    return () => dispatch(ClearTopup());
+    return () => dispatch(clearTopup());
   }, []);
 
   return (

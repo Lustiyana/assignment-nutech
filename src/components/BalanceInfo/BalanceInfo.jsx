@@ -3,18 +3,18 @@ import bgsaldo from "../../assets/images/Background Saldo.png";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GetBalance } from "../../redux/features/balance/action";
+import { getBalance } from "../../redux/features/balance/action";
 import { currencyFormatter } from "../../helper/currencyFormatter";
 
 const BalanceInfo = () => {
   const { balance } = useSelector((state) => state.balance);
-  const payment = useSelector((state) => state.payment);
-  const topup = useSelector((state) => state.topup);
+  const { paymentData } = useSelector((state) => state.payment);
+  const { topupData } = useSelector((state) => state.topup);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetBalance());
-  }, [topup?.data, payment?.data]);
+    dispatch(getBalance());
+  }, [topupData, paymentData]);
 
   const [isVisible, setIsVisible] = useState(false);
   const handleClickVisible = () => {
@@ -33,7 +33,7 @@ const BalanceInfo = () => {
           <div>Saldo anda</div>
           <div className="text-3xl font-bold flex items-center">
             {isVisible ? (
-              <div>{currencyFormatter(balance.data.balance)}</div>
+              <div>{currencyFormatter(balance?.balance)}</div>
             ) : (
               <div className="flex">
                 <div>Rp</div>

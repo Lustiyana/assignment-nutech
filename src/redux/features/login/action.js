@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 import * as types from "../../../constants/types";
-import { LoginService } from "../../../services/auth";
+import { loginService } from "../../../services/auth";
 
-export const PostLogin = (dataParams) => async (dispatch) => {
+export const postLogin = (dataParams) => async (dispatch) => {
   try {
     dispatch({
       type: types.POST_LOGIN_LOADING,
@@ -10,7 +10,7 @@ export const PostLogin = (dataParams) => async (dispatch) => {
         loading: true,
       },
     });
-    const data = await LoginService(dataParams);
+    const data = await loginService(dataParams);
     Cookies.set("token", data?.data?.token);
     dispatch({
       type: types.POST_LOGIN_SUCCESS,
@@ -24,7 +24,7 @@ export const PostLogin = (dataParams) => async (dispatch) => {
   }
 };
 
-export const ClearLogin = () => (dispatch) => {
+export const clearLogin = () => (dispatch) => {
   dispatch({
     type: types.CLEAR_LOGIN,
   });
