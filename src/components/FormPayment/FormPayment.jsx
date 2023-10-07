@@ -8,7 +8,7 @@ import { showToast } from "../../redux/features/toast/action";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 
-const PaymentForm = ({ id }) => {
+const FormPayment = ({ id }) => {
   const { services } = useSelector((state) => state.services);
   const payment = useSelector((state) => state.payment);
   const dispatch = useDispatch();
@@ -47,6 +47,8 @@ const PaymentForm = ({ id }) => {
     dispatch(postPayment({ service_code: services?.data[id].service_code }));
   };
 
+  console.log(payment);
+
   return (
     <div>
       <h1 className="text-xl mb-4">Pembayaran</h1>
@@ -78,4 +80,4 @@ const PaymentForm = ({ id }) => {
   );
 };
 
-export default PaymentForm;
+export default FormPayment;

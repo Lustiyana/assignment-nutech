@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PaymentForm from "../../components/PaymentForm/PaymentForm";
+import FormPayment from "../../components/FormPayment/FormPayment";
 import "../../index.css";
 import InfoLayout from "../../layout/InfoLayout/InfoLayout";
 
@@ -15,7 +15,7 @@ const PaymentPage = () => {
   }, []);
   return (
     <InfoLayout>
-      <PaymentForm id={id} />
+      <FormPayment id={id} />
     </InfoLayout>
   );
 };

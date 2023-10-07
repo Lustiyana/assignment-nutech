@@ -76,7 +76,12 @@ const FormTopup = () => {
             onChange={handleChange}
             errorMessage={errorMessage}
           />
-          <Button text="Top Up" disabled={!amount} onClick={handleClick} />
+          <Button
+            text="Top Up"
+            disabled={!amount || loading}
+            loading={loading}
+            onClick={handleClick}
+          />
           <Modal
             text1="Anda yakin untuk topup sebesar"
             text2={`${currencyFormatter(Number(amount))}?`}
