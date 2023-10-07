@@ -47,8 +47,6 @@ const FormPayment = ({ id }) => {
     dispatch(postPayment({ service_code: services?.data[id].service_code }));
   };
 
-  console.log(payment);
-
   return (
     <div>
       <h1 className="text-xl mb-4">Pembayaran</h1>
