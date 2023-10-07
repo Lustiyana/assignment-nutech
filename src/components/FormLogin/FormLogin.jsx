@@ -4,10 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { ICON } from "../../constants/icon";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
-import Toast from "../Toast/Toast";
 import { clearLogin, postLogin } from "../../redux/features/login/action";
 import { showToast } from "../../redux/features/toast/action";
-import Cookies from "js-cookie";
 
 const FormLogin = () => {
   const navigate = useNavigate();
@@ -16,38 +14,38 @@ const FormLogin = () => {
     password: "",
   });
   const dispatch = useDispatch();
-  const dataUser = useSelector((state) => state.login);
+  const { user, loading, error } = useSelector((state) => state.login);
 
   useEffect(() => {
-    if (dataUser?.error?.message) {
+    if (error?.message) {
       dispatch(
         showToast({
           isOpen: true,
-          message: dataUser.error.message,
+          message: error.message,
           isSuccess: false,
         })
       );
     }
-  }, [dataUser?.error?.message]);
+  }, [error?.message]);
 
   useEffect(() => {
-    if (dataUser?.user?.message) {
+    if (user?.message) {
       dispatch(
         showToast({
           isOpen: true,
-          message: dataUser?.user?.message,
+          message: user?.message,
           isSuccess: true,
         })
       );
     }
     return () => dispatch(clearLogin());
-  }, [dataUser?.user?.message]);
+  }, [user?.message]);
 
   useEffect(() => {
-    if (dataUser?.user?.data?.token) {
+    if (user?.data?.token) {
       navigate("/");
     }
-  }, [dataUser?.user?.data?.token]);
+  }, [user?.data?.token]);
 
   const handleEmailChange = (e) => {
     setModifiedData({ ...modifiedData, email: e.target.value });
@@ -80,7 +78,12 @@ const FormLogin = () => {
             onChange={handlePasswordChange}
           />
         </div>
-        <Button text="Login" type="submit" />
+        <Button
+          text="Login"
+          type="submit"
+          loading={loading}
+          disabled={loading}
+        />
       </form>
     </div>
   );

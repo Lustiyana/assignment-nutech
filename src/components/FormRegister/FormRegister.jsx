@@ -22,33 +22,33 @@ const FormRegister = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
-  const dataUser = useSelector((state) => state.register);
+  const { error, loading, user } = useSelector((state) => state.register);
 
   useEffect(() => {
-    if (dataUser?.error?.message) {
+    if (error?.message) {
       dispatch(
         showToast({
           isOpen: true,
-          message: dataUser.error.message,
+          message: error.message,
           isSuccess: false,
         })
       );
     }
-  }, [dataUser?.error?.message]);
+  }, [error?.message]);
 
   useEffect(() => {
-    if (dataUser?.user?.message) {
+    if (user?.message) {
       dispatch(
         showToast({
           isOpen: true,
-          message: dataUser?.user?.message,
+          message: user?.message,
           isSuccess: true,
         })
       );
       navigate("/login");
     }
     return () => dispatch(clearRegister());
-  }, [dataUser?.user?.message]);
+  }, [user?.message]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,8 +111,8 @@ const FormRegister = () => {
         <Button
           text="Registrasi"
           type="submit"
-          loading={dataUser.loading}
-          disabled={dataUser.loading}
+          loading={loading}
+          disabled={loading}
         />
       </form>
     </div>

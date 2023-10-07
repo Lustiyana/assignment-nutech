@@ -19,11 +19,12 @@ import { useNavigate } from "react-router-dom";
 const FormTopup = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();
-  const topup = useSelector((state) => state.topup);
+  const { amount, data, error, loading } = useSelector((state) => state.topup);
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
     if (isNaN(e.target.value)) {
-      return topup.top_up_amount + "";
+      return amount + "";
     } else {
       dispatch(onChangeTopup(e.target.value));
     }
@@ -31,15 +32,15 @@ const FormTopup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(PostTopup({ top_up_amount: topup.top_up_amount }));
+    dispatch(PostTopup({ top_up_amount: amount }));
     document.getElementById("close-my_modal").click();
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (topup.top_up_amount < 10000) {
+    if (amount < 10000) {
       setErrorMessage("Minimum topup sebesar Rp.10.000");
-    } else if (topup.top_up_amount > 1000000) {
+    } else if (amount > 1000000) {
       setErrorMessage("Maximum topup sebesar Rp.1.000.000");
     } else {
       document.getElementById("my_modal").showModal();
@@ -47,16 +48,16 @@ const FormTopup = () => {
   };
 
   useEffect(() => {
-    if (topup?.data?.message) {
+    if (data?.message) {
       document.getElementById("success").showModal();
     }
-  }, [topup?.data?.message]);
+  }, [data?.message]);
 
   useEffect(() => {
-    if (topup?.error?.message) {
+    if (error?.message) {
       document.getElementById("failed").showModal();
     }
-  }, [topup?.error?.message]);
+  }, [error?.message]);
 
   useEffect(() => {
     return () => dispatch(clearTopup());
@@ -71,18 +72,14 @@ const FormTopup = () => {
             type="tel"
             placeholder="masukkan nomimal Top Up"
             icon={ICON["money"]}
-            value={topup.top_up_amount}
+            value={amount}
             onChange={handleChange}
             errorMessage={errorMessage}
           />
-          <Button
-            text="Top Up"
-            disabled={!topup.top_up_amount}
-            onClick={handleClick}
-          />
+          <Button text="Top Up" disabled={!amount} onClick={handleClick} />
           <Modal
             text1="Anda yakin untuk topup sebesar"
-            text2={`${currencyFormatter(Number(topup?.top_up_amount))}?`}
+            text2={`${currencyFormatter(Number(amount))}?`}
             textClick="Ya, lanjutkan topup"
             icon={logo}
             onClick={handleSubmit}
@@ -92,7 +89,7 @@ const FormTopup = () => {
           <Modal
             id="success"
             text1="Top Up Sebesar"
-            text2={`${currencyFormatter(Number(topup?.top_up_amount))}`}
+            text2={`${currencyFormatter(Number(amount))}`}
             text3="berhasil"
             textClick="Kembali ke Beranda"
             onClick={() => navigate("/")}
