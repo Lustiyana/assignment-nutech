@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ICON } from "../../constants/icon";
+import { currencyFormatter } from "../../helper/currencyFormatter";
 import { clearPayment, postPayment } from "../../redux/features/payment/action";
 import { getServices } from "../../redux/features/services/action";
 import { showToast } from "../../redux/features/toast/action";
@@ -63,7 +64,9 @@ const FormPayment = ({ id }) => {
       <form action="" className="form-container">
         <FormInput
           type="text"
-          value={services?.data && services?.data[id]?.service_tariff}
+          value={currencyFormatter(
+            Number(services?.data && services?.data[id]?.service_tariff)
+          )}
           icon={ICON["money"]}
           readOnly
         />
