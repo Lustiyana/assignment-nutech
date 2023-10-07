@@ -1,8 +1,8 @@
 import * as types from "../../../constants/types";
-import { profileService } from "../../../services/items";
 import {
   editImageService,
   editProfileService,
+  profileService,
 } from "../../../services/profile";
 
 export const handleChangeProfile = (name, value) => (dispatch) => {

@@ -2,7 +2,6 @@ import { instance } from "../axios";
 import {
   getBalancePath,
   getBannerPath,
-  getProfilePath,
   getServicesPath,
   getTransactionHistoryPath,
 } from "../path";
@@ -27,21 +26,6 @@ export const bannersService = () => {
   const cookie = Cookies.get("token");
   return instance({
     url: getBannerPath,
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${cookie}`,
-    },
-  })
-    .then((res) => res.data)
-    .catch((err) => {
-      throw err.response.data;
-    });
-};
-
-export const profileService = () => {
-  const cookie = Cookies.get("token");
-  return instance({
-    url: getProfilePath,
     method: "GET",
     headers: {
       Authorization: `Bearer ${cookie}`,
